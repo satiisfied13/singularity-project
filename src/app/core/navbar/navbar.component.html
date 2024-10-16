@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="nav-bar nav-bar-left" [ngClass]="{'nav-bar-move': isLogged, 'nav-bar-move-2': !isLogged}">
+      <a [routerLink]="['/store']" routerLinkActive="router-link-active" class="nav-item">Store</a>
+    </div>
+    <div class="nav-bar nav-bar-center">
+      <img class="main-nav-logo" src="assets/a-logo.svg" alt="Logo">
+      <h1 class="logo-text">SINGULARITY</h1>
+    </div>
+    <div class="nav-bar nav-bar-right">
+      <a *ngIf="!isLogged" [routerLink]="['/auth']" routerLinkActive="router-link-active" class="nav-item">Sign Up</a>
+      <a *ngIf="isLogged" [routerLink]="['/profile']" class="profile-link">
+        <img class="nav-logo" src="assets/auth-logo.svg" alt="Profile">
+      </a>
+      <a [routerLink]="['/cart']" routerLinkActive="router-link-active" class="nav-item">
+        <img class="nav-logo" src="assets/cart-logo.svg" alt="Cart">
+        <div class="amount" *ngIf="amount">{{ amount }}</div>
+      </a>
+    </div>
+  </div>
+  

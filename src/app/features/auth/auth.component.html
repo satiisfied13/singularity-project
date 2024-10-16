@@ -1,0 +1,21 @@
+<div class="auth-container">
+    <ng-container *ngIf="isLoading">
+        <app-spinner style="margin-top: 100px;"></app-spinner>
+    </ng-container>
+    <div *ngIf="!isLoading" class="auth-form-wrapper">
+        <form class="auth-form" [formGroup]="authForm" (ngSubmit)="onAuth()">
+            <div class="logo-wrapper">
+                <img src="assets/a-logo.svg" class="logo" alt="">
+            </div>
+            <div class="error-message" *ngIf="error">{{ error }}</div>
+            <label for="email">Email:</label>
+            <input type="email" formControlName="email" id="email">
+            <label for="password">Password:</label>
+            <input type="password" formControlName="password" id="password">
+            <div class="auth-buttons">
+                <button class="auth-submit" type="submit">{{ isLoginMode ? 'Login' : 'Sign Up' }}</button>
+                <button class="auth-switch" type="button" (click)="onSwitch()">Switch Mode</button>
+            </div>
+        </form>
+    </div>
+</div>

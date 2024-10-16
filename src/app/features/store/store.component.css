@@ -1,0 +1,444 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.container-on-store {
+    min-height: 170vh;
+}
+
+.container-on-toggle-filter {
+    justify-content: flex-start; 
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    margin: 0 120px 0 0;
+    padding: 30px 0 30px 0;
+    border-left: 1px solid rgba(170, 168, 168, 0.401);
+    border-right: 1px solid rgba(170, 168, 168, 0.401);
+    align-items: center;
+    width: calc(100% - 60px); 
+    transition: width 0.3s ease;
+}
+
+.container-on-toggle-filter .content {
+    width: calc(100% - 300px);  
+}
+
+.card-handler {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 20px;
+    gap: 50px;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0 0 15px 0;
+    width: 300px;
+    height: 350px;
+    border-radius: 15px;
+    background: rgba(199, 198, 198, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease;
+}
+
+.price-and-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px 0 15px;
+}
+
+.buttons-handler {
+    display: flex;
+    gap: 10px;
+}
+
+.card-button {
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    background-color: rgb(15, 189, 15);
+    transition: ease 0.2s;
+}
+
+.card-button:hover {
+    transform: scale(1.05);
+}
+
+.card-button:active {
+    transform: scale(0.95);
+}
+
+.heart-button {
+    background-color: grey;
+}
+
+.card:hover {
+    transform: translateY(-15px);
+    transition: 0.3s ease;
+}
+
+.card-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    overflow: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: 1px solid rgba(170, 168, 168, 0.401);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+    height: 200px;
+    max-width: 220px;
+}
+
+.card-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+}
+
+a:hover {
+    color: rgba(255, 0, 0, 0.545);
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.price {
+    font-weight: 600;
+}
+
+.sidebar-container {
+    width: 150px;  
+    height: 100vh;
+    transition: width 0.3s ease; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.container-on-toggle-filter .sidebar-container {
+    width: 300px;  
+}
+
+.sidebar-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.sidebar-back-btn {
+    display: flex;
+    padding: 5px 0 0 5px;
+    justify-content: flex-start;
+}
+
+.back-btn {
+    width: 50px;
+    height: 50px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.1s ease;
+}
+
+.back-btn:active {
+    transform: scale(0.9);
+    transition: 0.1s ease;
+}
+
+.back-img {
+    width: 50px;
+    height: 50px;
+}
+
+.menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 35px;
+    height: 35px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.menu-btn .line {
+    width: 100%;
+    height: 3px;
+    background-color: #000;
+    transition: all 0.3s ease;
+}
+
+.menu-btn.open .line1 {
+    transform: rotate(45deg) translate(10px, 6px);
+}
+
+.menu-btn.open .line2 {
+    opacity: 0;
+}
+
+.menu-btn.open .line3 {
+    transform: rotate(-45deg) translate(10px, -6px);
+}
+
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.glass-logo {
+    width: 30px;
+    height: 30px;
+}
+
+.search-icon {
+    padding: 4px 15px 0 0;
+    color: #ccc;
+    pointer-events: none;
+}
+
+.search-input {
+    width: 700px;
+    padding: 10px 15px 10px 45px; 
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    width: 700px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    list-style: none;
+    z-index: 100;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown li:hover {
+    background-color: #f0f0f0;
+}
+
+app-spinner {
+    margin-top: 200px;
+}
+
+.categories-container, .price-container {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.categories, .price-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 10px;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.categories:hover, .price-filter:hover {
+    color: #007bff;
+}
+
+.category-arrow {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.categories-container.open .category-arrow, .price-container.open .category-arrow {
+    transform: rotate(-180deg);
+}
+
+.checkbox-group, .price-slider {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px;
+}
+
+.apply-btn {
+    margin: 10px 0 10px 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.price-btn {
+    margin-right: 15px;
+}
+
+.apply-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+label {
+    cursor: pointer;
+    font-weight: 500;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+label:hover {
+    color: #007bff;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.categories-dropdow-menu, .price-dropdow-menu {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+    padding: 0 10px;
+}
+
+.categories-dropdow-menu.open, .price-dropdow-menu.open {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.categories-dropdow-menu.closed, .price-dropdow-menu.closed {
+    max-height: 0;
+    opacity: 0;
+    padding: 0 10px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #cecece;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.text-price-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 30px;
+    outline: none;
+    padding: 0 0 0 10px;
+    width: 83px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.text-price-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid rgba(170, 168, 168, 0.401);
+    border-radius: 10px;
+    background: #fff;
+}
+
+.favourite-active-button {
+    background-color: rgb(231, 55, 55);
+}
+
+.pagination {
+    margin: 60px 40px 40px 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    margin-top: auto;
+}
+
+.pag-btn {
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    background: none;
+    margin: 0 10px 0 10px;
+}
+
+.pag-logo {
+    width: 50px;
+    height: 50px;
+}

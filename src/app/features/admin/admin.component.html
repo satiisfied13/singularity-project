@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="sidebar" [ngClass]="{'loading': isLoading2}">
+        <div class="nav-container">
+            <a class="form-nav form-nav1" [ngClass]="{'on-activated': formType === 'product'}" (click)="onChooseForm('product')">
+                Product Form
+            </a>
+            <a class="form-nav form-nav2" [ngClass]="{'on-activated': formType === 'category'}" (click)="onChooseForm('category')">
+                Category Form
+            </a>
+        </div>
+        <form class="form" [formGroup]="adminProductForm" (ngSubmit)="onAddProduct()" *ngIf="!isLoading2 && formType === 'product'">
+            <label for="name">Name:</label>
+            <input formControlName="name" id="name" placeholder="Enter product name">
+
+            <label for="description">Description:</label>
+            <input formControlName="description" id="description" placeholder="Enter description">
+
+            <label for="price">Price:</label>
+            <input formControlName="price" id="price" placeholder="Enter price">
+
+            <label for="image">Image URL/PATH:</label>
+            <input formControlName="image" id="image" placeholder="Enter image URL">
+
+            <label for="productCode">Product Code:</label>
+            <input formControlName="productCode" id="productCode" placeholder="Enter product code">
+
+            <label for="category">Category:</label>
+            <input formControlName="category" id="category" placeholder="Enter category">
+
+            <div class="status-container st" *ngIf="status">
+                <p>{{ status }}</p>
+            </div>
+
+            <div class="error-container st" *ngIf="error">
+                <p>{{ error }}</p>
+            </div>
+
+            <div class="buttons">
+                <button class="login-btn" type="submit">Add Product</button>
+            </div>
+        </form>
+
+        <form class="form" [formGroup]="adminCategoryForm" (ngSubmit)="onAddCategory()" *ngIf="!isLoading2 && formType === 'category'">
+            <label for="name">Category Name:</label>
+            <input formControlName="name" id="name" placeholder="Enter category name">
+
+            <label for="categoryCode">Category Code:</label>
+            <input formControlName="categoryCode" id="categoryCode" placeholder="Enter category code">
+
+            <div class="status-container st" *ngIf="status">
+                <p>{{ status }}</p>
+            </div>
+
+            <div class="error-container st" *ngIf="error">
+                <p>{{ error }}</p>
+            </div>
+
+            <div class="buttons">
+                <button class="login-btn"  type="submit">Add Category</button>
+            </div>
+        </form>
+
+        <app-spinner *ngIf="isLoading2" class="spinner" style="margin: 30px 0 0 100px;"></app-spinner>
+    </div>
+    <div class="content">
+        <table class="cart-table" *ngIf="products.length && !isLoading && formType === 'product'">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Category</th>
+                    <th>Product Code</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products; let i = index">
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price }}</td>
+                    <td><img [src]="product.image" alt="Product Image" class="product-image"></td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.productCode }}</td>
+                    <td>
+                        <button class="delete-btn" (click)="onDeleteProduct(i)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 class="no-products" *ngIf="!products.length && !isLoading && formType === 'product'">No products available.</h2>
+        <table class="cart-table" *ngIf="categories.length && !isLoading && formType === 'category'">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Category Code</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categories; let i = index">
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.categoryCode }}</td>
+                    <td>
+                        <button class="delete-btn" (click)="onDeleteCategory(i)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 class="no-products" *ngIf="!categories.length && !isLoading && formType === 'category'">No categories available.</h2>
+        <app-spinner *ngIf="isLoading" class="spinner" style="margin: 300px 0 0 450px;"></app-spinner>
+    </div>
+</div>

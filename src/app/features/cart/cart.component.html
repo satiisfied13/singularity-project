@@ -1,0 +1,106 @@
+<div class="cart-wrapper">
+    <div [ngClass]="{'on-buy': isBought}">
+        <div class="cart-content" *ngIf="!isLoading">
+            <table class="cart-table" *ngIf="cartProducts.length">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Amount</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cartProducts; let i = index">
+                        <td><img class="product-image" [src]="item.imagePath" alt=""></td>
+                        <td>{{ item.product }}</td>
+                        <td>
+                            <button [disabled]="isBought" class="btn-amount" (click)="onRemove(i)">-</button>
+                            {{ item.amount }}
+                            <button [disabled]="isBought" class="btn-amount" (click)="onAdd(i)">+</button>
+                        </td>
+                        <td>{{ item.price | currency: 'USD' }}</td>
+                        <td>
+                            <button [disabled]="isBought" class="btn-delete" (click)="onDelete(i)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 class="empty-message" *ngIf="!cartProducts.length">Your cart is empty!</h2>
+        </div>
+        <div class="summary-container" *ngIf="cartProducts.length && !isLoading">
+            <p>Full price: <strong>{{ fullPrice | currency: 'USD' }}</strong></p>
+        </div>
+        <div class="buy-container" *ngIf="!isLoading">
+            <button 
+                (click)="onPopUp()" 
+                *ngIf="cartProducts.length" 
+                class="buy-btn"
+                [disabled]="isBought">Buy</button>
+        </div>   
+        <app-spinner *ngIf="isLoading" class="spinner"></app-spinner>
+    </div>
+    <div class="pop-up-buy" *ngIf="isBought">
+        <button (click)="onClosePopUp()" class="cross-btn"><img src="assets/cross.svg"></button>
+        <ng-container *ngIf="!isLoading2 && !isPurchased">
+            <img src="assets/a-logo.svg" class="logo">
+            <form [formGroup]="buyForm" (ngSubmit)="onBuy()">
+                <label for="email">Email:</label>
+                <input 
+                    id="email" 
+                    formControlName="email" 
+                    type="email"
+                    placeholder="youremail@your.com">
+                <label for="name">Name:</label>
+                <input 
+                    id="name" 
+                    formControlName="name" 
+                    type="text"
+                    placeholder="Ivan Ivanov">
+                <label for="cardNumber">Card Number:</label>
+                <input 
+                    id="cardNumber" 
+                    formControlName="cardNumber" 
+                    placeholder="1234 1234 1234 1234" 
+                    type="text"
+                    (input)="formatCardNumber($event)">
+                <div class="form-exp-cvv">
+    
+                    <div class="inf">
+                        <label for="cardExpDate">Expiration Date:</label>
+                        <input 
+                            id="cardExpDate" 
+                            formControlName="cardExpDate" 
+                            placeholder="12/34" 
+                            type="text"
+                            (input)="formatExpiryDate($event)"/>
+                    </div>
+                    
+                    <div class="inf inf-sec">
+                        <label for="cardCVV">CVV code:</label>
+                        <input 
+                            id="cardCVV" 
+                            type="password" 
+                            placeholder="***" 
+                            formControlName="cardCVV"
+                            maxlength="3">
+                    </div>
+    
+                </div>
+                <div [ngClass]="{'on-error': error}" class="error-handler">
+                    <p *ngIf="error">{{error}}</p>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </ng-container>
+        <ng-container *ngIf="isLoading2">
+            <app-spinner></app-spinner>
+        </ng-container>
+        <div class="succ-handler" *ngIf="!isLoading2 && isPurchased">
+            <h2 style="width: 350px;">
+                Thank you for purchase!<br> We will contact you soon, your purchase id: <strong>{{ purchaseId }}</strong>
+            </h2>
+        </div>
+    </div>
+</div>

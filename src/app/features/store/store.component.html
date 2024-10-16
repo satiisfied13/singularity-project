@@ -1,0 +1,184 @@
+<div class="container" [ngClass]="{
+    'container-on-toggle-filter': isFilterToggled,
+    'container-on-store': !isProductChosen}">
+    <ng-container>
+        <div class="sidebar-container">
+            <ng-container *ngIf="!isProductChosen">
+                <div class="sidebar-filter">
+                    <p>Filter</p>
+                    <button class="menu-btn" [ngClass]="{'open': isOpen}" (click)="onToggleFilter()">
+                        <div class="line line1"></div>
+                        <div class="line line2"></div>
+                        <div class="line line3"></div>
+                    </button>                    
+                </div>
+                <div   
+                    class="categories-container" 
+                    *ngIf="isFilterToggled" 
+                    [ngClass]="{'open': isCategoriesVisible, 'closed': !isCategoriesVisible}">
+                    <span class="categories" (click)="toggleCategories()">
+                        Categories
+                        <img class="category-arrow" src="assets/arrow.svg">
+                    </span>
+                    <div class="categories-dropdow-menu" [ngClass]="{'open': isCategoriesVisible, 'closed': !isCategoriesVisible}">
+                        <form [formGroup]="categoriesFilterForm" (ngSubmit)="onSubmitFilter()">
+                            <div class="checkbox-group">
+                                <label *ngFor="let category of categories">
+                                    <input type="checkbox" [formControlName]="category.name" />
+                                    {{ category.name }}
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div 
+                    class="price-container" 
+                    *ngIf="isFilterToggled" 
+                    [ngClass]="{'open': isPriceVisible, 'closed': !isPriceVisible}">
+                    <span class="price-filter" (click)="togglePriceFilter()">
+                        Price Range
+                        <img class="category-arrow" src="assets/arrow.svg">
+                    </span>
+                
+                    <div class="price-dropdow-menu" [ngClass]="{'open': isPriceVisible, 'closed': !isPriceVisible}">
+                        <form class="price-slider" [formGroup]="priceFilterForm" (submit)="onSubmitFilter()">
+                            <label class="min-label">
+                                <input 
+                                    [(ngModel)]="selectedMinPrice" 
+                                    formControlName="min" 
+                                    class="text-price-input"
+                                    [min]="minPrice" 
+                                    [max]="priceFilterForm.value.max"> 
+                                - 
+                                <input 
+                                    [(ngModel)]="selectedMaxPrice" 
+                                    formControlName="max" 
+                                    class="text-price-input"
+                                    [min]="priceFilterForm.value.min" 
+                                    [max]="maxPrice">
+                            </label>
+                            <input 
+                                formControlName="min"
+                                type="range"  
+                                [(ngModel)]="selectedMinPrice"
+                                min="{{minPrice}}"
+                                max="{{maxPrice}}"
+                            />
+                            <input 
+                                formControlName="max"
+                                type="range" 
+                                [(ngModel)]="selectedMaxPrice"
+                                min="{{minPrice}}"
+                                max="{{maxPrice}}"
+                            />
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <button 
+                        type="submit" 
+                        style="width: 100%; margin: 10px 0 0 0;" 
+                        class="apply-btn price-btn"
+                        *ngIf="isFilterToggled"
+                        (click)="onSubmitFilter()">Apply Filters</button>
+                </div>
+                <div>
+                    <button 
+                        type="submit" 
+                        style="width: 100%; margin: 10px 0 0 0;" 
+                        class="apply-btn price-btn"
+                        *ngIf="isFilterToggled"
+                        (click)="onClearFilters()">Clear Filters</button>
+                </div>                 
+            </ng-container>
+            <ng-container *ngIf="isProductChosen">
+                <div class="sidebar-back-btn">
+                    <button class="back-btn" (click)="onGoBackToStore()">
+                        <img class="back-img" src="assets/back-logo.svg" alt="">
+                    </button>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <div class="content">
+
+        <ng-container *ngIf="!isLoading">
+
+            <ng-container *ngIf="!isProductChosen">
+                <div class="search-container">
+                    <span class="search-icon">
+                        <img src="assets/glass-logo.svg" class="glass-logo" alt="">
+                    </span>
+                    <input 
+                        [(ngModel)]="searchModel"
+                        type="text" 
+                        placeholder="Search for products..." 
+                        class="search-input"
+                        (input)="onSearch()"
+                    />
+                    
+                    <ul *ngIf="searchModel && filteredProducts.length > 0" class="dropdown">
+                        <li *ngFor="let product of searchFilteredProducts; let i = index">
+                            <a 
+                                [routerLink]="['/store', product.productCode]" 
+                                (click)="onProductChosen(i)">
+                                <p style="display: flex; align-items: center;">
+                                    <img 
+                                        [src]="product.image" 
+                                        style="width: 25px; height: 25px; padding-right: 10px;">
+                                    {{ product.name }}
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </ng-container>
+
+        <ng-container *ngIf="!isProductChosen">
+            <div class="card-handler">
+                <div class="card" *ngFor="let product of paginatedProducts; let i = index">
+                <div class="card-image-container" (click)="onProductChosen(i)">
+                    <img class="card-image" [src]="product.image" alt="">
+                </div>
+                <div class="card-content" (click)="onProductChosen(i)">
+                    <a>
+                    <p class="name">{{ product.name }}</p>
+                    </a>
+                </div>
+                <div class="price-and-buttons">
+                    <p class="price">{{ product.price | currency: 'USD' }}</p>
+                    <div class="buttons-handler">
+                    <button class="card-button" (click)="onAddToCart(i)">
+                        <img src="assets/store-cart-logo.svg" alt="" class="glass-logo">
+                    </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div style="height: 60px;"></div>
+            
+            <div class="pagination">
+                <button class="pag-btn" (click)="previousPage()" [disabled]="currentPage === 1">
+                    <img src="assets/back-logo.svg" class="pag-logo">
+                </button>
+                <span>Page {{ currentPage }} out of {{ totalPages }}</span>
+                <button class="pag-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+                    <img src="assets/back-logo.svg" class="pag-logo" style="transform: rotate(180deg);">
+                </button>
+            </div>
+            </ng-container>
+            
+            <ng-container *ngIf="isProductChosen">
+                <router-outlet></router-outlet>
+            </ng-container>
+
+        </ng-container>
+
+        <ng-container *ngIf="isLoading">
+            <app-spinner></app-spinner>
+        </ng-container>
+        
+    </div>
+</div>

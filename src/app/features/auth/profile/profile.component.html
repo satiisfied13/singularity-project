@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="content" *ngIf="!isLoading">
+        <div class="header">
+            <div class="img-handler">
+                <img class="img" src="assets/logo.svg" alt="User Image">
+            </div>
+            <div class="user-info">
+                <a class="add-name" *ngIf="!isNameSettingMode && !userData.name" role="button" (click)="addName()">
+                    + Add name
+                </a>
+                <p *ngIf="userData.name" class="user-name">{{ userData.name }}</p>
+                <div class="name-form-handler" *ngIf="isNameSettingMode && !userData.name">
+                    <form [formGroup]="nameForm" (ngSubmit)="onAddName()">
+                        <input formControlName="name" class="name-input" type="text" placeholder="Enter name">
+                        <button class="btn btn-submit" type="submit">✓</button>
+                        <button class="btn btn-cancel" (click)="addName()">X</button>
+                    </form>
+                </div>
+            </div>
+            <div class="navbar">
+                <a *ngIf="isAdmin" class="navitem navitem0" [routerLink]="['/admin']" role="button">Admin</a>
+                <a class="navitem navitem1" role="button">Purchases</a>
+                <a class="navitem navitem2" (click)="onLogout()" role="button">Log out</a>
+            </div>
+        </div>
+        <div class="content-main" style="overflow: scroll; height: 70vh;">
+            <table class="cart-table" *ngIf="userData.purchases.length">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Amount</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of userData.purchases">
+                        <td><img class="product-image" [src]="item.imagePath" alt="Product Image"></td>
+                        <td>{{ item.product }}</td>
+                        <td>{{ item.amount }}</td>
+                        <td>{{ item.price | currency: 'USD' }}</td>
+                        <td>{{ item.purchaseDate | date: 'short' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 class="no-purchases" *ngIf="!userData.purchases.length">You have no purchases yet!</h2>
+        </div>
+    </div>
+    <app-spinner *ngIf="isLoading" class="spinner"></app-spinner>
+</div>

@@ -1,0 +1,146 @@
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: #f4f4f9;
+    padding: 20px;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-nav {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-nav:hover {
+    background-color: #0056b3;
+}
+
+.on-activated {
+    background-color: #0056b3;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.status-container p,
+.error-container p {
+    font-size: 14px;
+    color: #28a745;
+}
+
+.error-container p {
+    color: #dc3545;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.login-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+.content {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: scroll;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.cart-table thead {
+    background-color: #007bff;
+    color: white;
+}
+
+.cart-table th,
+.cart-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.product-image {
+    width: 60px;
+    height: auto;
+}
+
+.no-products {
+    color: #999;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.spinner {
+    margin-top: 100px;
+}
+
+.delete-btn {
+    padding: 10px 20px;
+    background-color: #e41c3a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.st {
+    padding-bottom: 15px;
+}

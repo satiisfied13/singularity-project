@@ -1,0 +1,142 @@
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.img-handler {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+}
+
+.user-info {
+    flex-grow: 1;
+    padding-left: 20px;
+}
+
+.add-name {
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.user-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+}
+
+.navitem {
+    color: #555;
+    font-size: 14px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.navitem:hover {
+    background-color: #0056b3;
+}
+
+.name-input {
+    width: 150px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    border-radius: 50%;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+.btn-submit {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-cancel {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cart-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.cart-table thead {
+    background-color: #007bff;
+    color: white;
+}
+
+.cart-table th, .cart-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.product-image {
+    width: 50px;
+    height: auto;
+}
+
+.no-purchases {
+    color: #999;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.spinner {
+    margin-top: 100px;
+}

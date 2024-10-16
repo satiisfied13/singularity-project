@@ -1,0 +1,25 @@
+<div class="product-wrapper">
+    <div class="image-container">
+        <img class="product-image" [src]="product.image" alt="">
+    </div>
+    <div class="info-container">
+        <h1 class="product-name">{{ product.name }}</h1>
+        <div class="price-and-btn">
+            <h3 class="product-price">{{ product.price | currency: 'USD' }}</h3>
+            <button class="buy-button" (click)="onAddToCart()">Add to Cart</button>
+        </div>
+        <div class="description-container">
+            <div   
+                    class="description-wrapper"  
+                    [ngClass]="{'open': isDescriptionVisible, 'closed': !isDescriptionVisible}">
+                    <span class="desc" (click)="toggleDescription()">
+                        Description
+                        <img class="desc-arrow" src="assets/arrow.svg">
+                    </span>
+                    <div class="description-dropdown-menu" [ngClass]="{'open': isDescriptionVisible, 'closed': !isDescriptionVisible}">
+                        <p class="description">{{ product.description }}</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
